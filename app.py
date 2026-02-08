@@ -20,31 +20,29 @@ if not MONGO_URI:
     raise ValueError("MONGO_URI is not set in environment variables")
 
 client = MongoClient(MONGO_URI)
-
 db = client["cultural_translator"]
 collection = db["idioms"]
 
 # ---------------- Text Preprocessing ----------------
 def preprocess_text(text):
     text = text.lower()
-    text = re.sub(r"[^\u0900-\u097F\w\s]", "", text)  # Keeps Marathi + English
+    text = re.sub(r"[^\u0900-\u097F\w\s]", "", text)  # Keep Marathi + English
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 
 # ---------------- NLP Matching ----------------
 def find_best_match(user_input, docs):
-
     phrases = [preprocess_text(doc["phrase"]) for doc in docs]
 
+    # Use TF-IDF for similarity
     vectorizer = TfidfVectorizer(ngram_range=(1, 2))
     vectors = vectorizer.fit_transform([user_input] + phrases)
-
     similarity_scores = cosine_similarity(vectors[0:1], vectors[1:])[0]
 
     best_index = similarity_scores.argmax()
     best_score = similarity_scores[best_index]
 
-    if best_score >= 0.4:
+    if best_score >= 0.4:  # similarity threshold
         return docs[best_index], best_score
 
     return None, None
@@ -52,7 +50,6 @@ def find_best_match(user_input, docs):
 # ---------------- API Route ----------------
 @app.route("/translate", methods=["POST"])
 def translate():
-
     data = request.get_json()
     user_input = data.get("text")
 
@@ -60,7 +57,6 @@ def translate():
         return jsonify({"error": "No input text provided"}), 400
 
     user_input_clean = preprocess_text(user_input)
-
     docs = list(collection.find())
 
     if not docs:
