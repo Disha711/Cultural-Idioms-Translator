@@ -142,7 +142,7 @@ with col2:
                     st.stop()
 
                 response = requests.post(
-                    "http://127.0.0.1:5000/translate",
+                    "https://cultural-idioms-translator.onrender.com/translate",
                     json={"text": user_input}
                 )
 
@@ -183,3 +183,4 @@ with col2:
 
             except:
                 st.error("Language detection failed. Please try again.")
+
