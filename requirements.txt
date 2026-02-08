@@ -1,4 +1,4 @@
-﻿altair==6.0.0
+altair==6.0.0
 anyio==4.12.1
 attrs==25.4.0
 beautifulsoup4==4.14.3
@@ -75,4 +75,5 @@ urllib3==2.6.3
 watchdog==6.0.0
 Werkzeug==3.1.5
 gunicorn==22.0.0
+
 
