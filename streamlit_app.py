@@ -13,9 +13,14 @@ st.set_page_config(
 # ---------------- PASTEL CSS ----------------
 st.markdown("""
 <style>
-.stApp { background: linear-gradient(180deg, #f7f2ff 0%, #fff0f8 100%); }
+.stApp { 
+    background: linear-gradient(180deg, #f7f2ff 0%, #fff0f8 100%); 
+}
 
-[data-testid="stSidebar"] { background-color: #eadcff; padding: 15px; }
+[data-testid="stSidebar"] { 
+    background-color: #eadcff; 
+    padding: 15px; 
+}
 
 .sidebar-card {
     background-color: #f3ebff;
@@ -38,6 +43,10 @@ st.markdown("""
     color: #5a4a7a;
 }
 
+.stSubheader {
+    color: #5a4a7a !important;
+}
+
 .stTextInput input {
     background-color: #f3ebff !important;
     border-radius: 18px !important;
@@ -46,32 +55,37 @@ st.markdown("""
     color: #5a4a7a !important;
 }
 
-.stButton > button {
-    background: linear-gradient(90deg, #c7b3ff, #e0c3fc);
-    color: white;
-    border-radius: 18px;
-    padding: 10px 30px;
-    font-weight: 600;
-    border: none;
+.stTextInput input::placeholder {
+    color: #b6a7d6 !important;
+    opacity: 1 !important;
 }
 
-.card {
-    background-color: #f3ebff;
-    padding: 20px;
-    border-radius: 20px;
-    margin-top: 15px;
-    box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+.stButton > button { 
+    background: linear-gradient(90deg, #c7b3ff, #e0c3fc); 
+    color: white; 
+    border-radius: 18px; 
+    padding: 10px 30px; 
+    font-weight: 600; 
+    border: none; 
+}
+
+.card { 
+    background-color: #f3ebff; 
+    padding: 20px; 
+    border-radius: 20px; 
+    margin-top: 15px; 
+    box-shadow: 0 5px 12px rgba(0,0,0,0.05); 
     color: #5a4a7a;
 }
 
-/* Cute centered area for both mobile and laptop */
+/* Cute centered area */
 .cute-center{
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Mobile tweaks only */
+/* Mobile only */
 @media (max-width: 600px){
     .stButton > button{
         width:100%;
@@ -107,7 +121,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- MAIN CONTENT ----------------
+# ---------------- MAIN ----------------
 st.markdown("<div class='cute-center'>", unsafe_allow_html=True)
 
 st.subheader("✨ Enter Idiom")
